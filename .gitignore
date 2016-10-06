@@ -1,4 +1,5 @@
 .Rproj.user
 .Rhistory
 data/y_pred.rda
+data/ind_quiz.rda
 history
