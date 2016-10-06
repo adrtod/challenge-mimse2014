@@ -1,6 +1,6 @@
 .Rproj.user
 .Rhistory
-data/y_pred.rda
+data/y_test.rda
 data/ind_quiz.rda
 submissions
 history
