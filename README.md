@@ -25,5 +25,5 @@ publish(output_file = "index.html")
 Mise à jour automatique avec le cron suivant :
 
 ```
-0 * * * * cd path/to/challenge && Rscript -e 'rchallenge::publish(output_file = "index.html")' && git commit index.html -m "maj html" && git push 
+0 * * * * cd path/to/challenge && Rscript -e 'rchallenge::publish(output_file = "index.html")' && git commit -m "maj html" index.html && git push 
 ```
