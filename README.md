@@ -17,7 +17,6 @@ new_challenge(template = "fr",
               
 new_team("CA_IB_YQ", "CLF_KH_VG", "FCS_CS_CD", "MP_DS_BT",
          "CC_JC_CD", "DZ_JK_MG", "GB_AD_BH", "Anonymous")
-")
 
 publish(output_file = "index.html")
 ```
