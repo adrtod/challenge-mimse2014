@@ -103,7 +103,6 @@ Bienvenue sur la page du challenge d'[Apprentissage automatique](https://adrtod.
 Dernière mise à jour : ```r last_update(deadline)```
 
 # News
-
 Le 8 janv. 2015 :
   ~ Le challenge est terminé et voici le [classement][Classement] final. Bravo à tous !
   
@@ -134,13 +133,11 @@ if (exists("best", mode = "list"))
 ```
 
 # Objectif
-
 **Classification binaire** : prédire la solvabilité ou le risque de non-remboursement d'un ensemble de clients dans le but de l'octroi de crédit bancaire.
 
 On dispose pour cela d'un jeu de données d'apprentissage supervisé : ensemble de clients dont la réponse est connue. Le but est d'obtenir le meilleur score de prédiction sur un jeu de données test dont la réponse est cachée.
 
 # Déroulement du challenge
-
 1. Envoyer un email à <`r email`> contenant les informations suivantes :
 
     - nom de l'équipe et des participants
@@ -261,7 +258,6 @@ Seul le meilleur score par équipe parmi toutes les soumissions est retenu.
 L'équipe ```r baseline``` correspond au score du meilleur classifieur parmi `predict_all_bad` ou `predict_all_good` qui tient lieu de référence à améliorer.
 
 # Historique des soumissions
-
 ```{r, echo=FALSE, fig.cap="Taux d'erreur", fig.height=5, fig.width=9}
 # color palette# color palette
 Dark2 <- colorRampPalette(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02", 
