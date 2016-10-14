@@ -21,8 +21,8 @@ new_team("CA_IB_YQ", "CLF_KH_VG", "FCS_CS_CD", "MP_DS_BT",
 publish(output_file = "index.html")
 ```
 
-Mise à jour automatique avec le cron suivant :
+Mise à jour automatique avec le cron suivant (changer le chemin) :
 
 ```
-0 * * * * cd path/to/challenge && Rscript -e 'rchallenge::publish(output_file = "index.html")' && git commit -m "maj html" index.html && git push 
+0 * * * * cd ~/Dropbox/challenge-mimse2014 && Rscript -e 'rchallenge::publish(output_file = "index.html")' && git commit -m "maj html" index.html && git push 
 ```

@@ -6,16 +6,13 @@ output:
   html_document:
     highlight: tango
     theme: spacelab
-    toc: yes
 ---
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
 <a href="https://github.com/adrtod/challenge-mimse2014"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
-Bienvenue sur la page du challenge d'[Apprentissage automatique](https://adrtod.github.io/ml2014) du Master 2 [MIMSE](http://www.math.u-bordeaux.fr/DIM/master/mimse/pageweb/pmwiki.php) !
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-# Load the rcallenge package
+# Load the rchallenge package
 library(rchallenge)
 
 # General settings
@@ -97,6 +94,8 @@ if (length(history)>0) {
 }
 ```
 
+Bienvenue sur la page du challenge d'[Apprentissage automatique](https://adrtod.github.io/ml2014) du Master 2 [MIMSE](http://www.math.u-bordeaux.fr/DIM/master/mimse/pageweb/pmwiki.php) !
+
 | <i class="fa fa-cloud-upload fa-2x"></i> \ **`r n_submissions`** | <i class="fa fa-users fa-2x"></i> \ **`r n_team`** | <i class="fa fa-calendar fa-2x"></i> \ **`r countdown(deadline)`** |
 |:-------------:|:-------------:|:-------------:|
 | soumissions | équipes | `r ifelse(Sys.time()<deadline, "en cours", "terminé")` |
@@ -112,10 +111,27 @@ Le 4 janv. 2015 :
   ~ Note sur la prise en compte des coûts : [<i class="fa fa-download fa-2x"></i>](note_challenge.pdf)
   
 Le 3 nov. 2014 :
-  ~ Les scores sont maintenant calculés sur l'ensemble du jeu test et non plus sur un sous ensemble. Le [classement][Classement] et l'[historique][Historique des soumissions] ont été mis à jour en conséquence. La date limite des contributions a été repoussée au `r format(deadline, "%A %d %b %Y")`.
+  ~ Les scores sont maintenant calculés sur l'ensemble du jeu test et non plus sur un sous ensemble. Le classement et l'[historique][Historique des soumissions] ont été mis à jour en conséquence. La date limite des contributions a été repoussée au `r format(deadline, "%A %d %b %Y")`.
   
 Le `r date_start` :
   ~ Le challenge est ouvert !
+
+```{r, echo = FALSE , results='asis'}
+colnames = c('<i class="fa fa-trophy"></i> Classement',
+             '<i class="fa fa-users"></i> Equipe',
+             '<i class="fa fa-cloud-upload"></i> Soumissions',
+             '<i class="fa fa-calendar"></i> Date',
+             '<i class="fa fa-bullseye"></i> Score')
+if (exists("best", mode = "list"))
+  print_leaderboard(best, "error", test_name=test_or_quiz, 
+                    caption="Taux d'erreur", col.names=colnames)
+```
+
+```{r, echo = FALSE , results='asis'}
+if (exists("best", mode = "list"))
+  print_leaderboard(best, "cost", test_name=test_or_quiz, 
+                    caption = "Coût moyen", col.names=colnames)
+```
 
 # Objectif
 
@@ -244,25 +260,9 @@ Seul le meilleur score par équipe parmi toutes les soumissions est retenu.
 
 L'équipe ```r baseline``` correspond au score du meilleur classifieur parmi `predict_all_bad` ou `predict_all_good` qui tient lieu de référence à améliorer.
 
-### Taux d'erreur
-Dernière mise à jour : ```r last_update(deadline)```
-```{r, echo = FALSE , results='asis'}
-if (exists("best", mode = "list"))
-  print_leaderboard(best, "error", test_name=test_or_quiz)
-```
-
-### Coût moyen
-Dernière mise à jour : ```r last_update(deadline)```
-```{r, echo = FALSE , results='asis'}
-if (exists("best", mode = "list"))
-  print_leaderboard(best, "cost", test_name=test_or_quiz)
-```
-
 # Historique des soumissions
 
-### Taux d'erreur
-Dernière mise à jour : ```r last_update(deadline)```
-```{r, echo=FALSE, fig.cap="Historique des soumissions - Taux d'erreur", fig.height=5, fig.width=9}
+```{r, echo=FALSE, fig.cap="Taux d'erreur", fig.height=5, fig.width=9}
 # color palette# color palette
 Dark2 <- colorRampPalette(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02", 
                             "#A6761D", "#666666"))
@@ -272,24 +272,22 @@ par(mar = c(5,4,4,7) + 0.1)
 plot_history(history, "error", test_name=test_or_quiz)
 ```
 
-### Coût moyen
-Dernière mise à jour : ```r last_update(deadline)```
-```{r, echo=FALSE, fig.cap="Historique des soumissions - Coût moyen", fig.height=5, fig.width=9}
+```{r, echo=FALSE, fig.cap="Coût moyen", fig.height=5, fig.width=9}
 par(mar = c(5,4,4,7) + 0.1)
 plot_history(history, "cost", test_name=test_or_quiz)
 ```
 
-### Activité
-Dernière mise à jour : ```r last_update(deadline)```
-```{r, echo=FALSE, fig.cap="Historique des soumissions - Activité", fig.height=5, fig.width=9}
+```{r, echo=FALSE, fig.cap="Activité", fig.height=5, fig.width=9}
 par(mar = c(5,4,4,7) + 0.1)
 plot_activity(history)
 ```
 
 # Erreurs de lecture
-Dernière mise à jour : ```r last_update(deadline)```
 ```{r, echo=FALSE}
-print_readerr(read_err)
+colnames = c('<i class="fa fa-users"></i> Equipe',
+             '<i class="fa fa-file"></i> Fichier',
+             '<i class="fa fa-comment"></i> Message')
+print_readerr(read_err, col.names = colnames)
 ```
 
 ------------
